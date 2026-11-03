@@ -41,8 +41,8 @@ cleaned AS (
        CASE
            WHEN UPPER(TRIM(CAST(zip AS STRING))) IN ('N/A', 'NA') THEN NULL
            WHEN UPPER(TRIM(CAST(zip AS STRING))) = 'ANONYMOUS' THEN 'Anonymous'
-           WHEN LENGTH(CAST(zip AS STRING)) = 5 THEN CAST(incident_zip AS STRING)
-           WHEN LENGTH(CAST(zip AS STRING)) = 9 THEN CAST(incident_zip AS STRING)
+           WHEN LENGTH(CAST(zip AS STRING)) = 5 THEN CAST(zip AS STRING)
+           WHEN LENGTH(CAST(zip AS STRING)) = 9 THEN CAST(zip AS STRING)
            WHEN LENGTH(CAST(zip AS STRING)) = 10
                AND REGEXP_CONTAINS(CAST(zip AS STRING), r'^\d{5}-\d{4}')
            THEN CAST(zip AS STRING)
@@ -72,6 +72,9 @@ cleaned AS (
    -- Filters
    WHERE job_filing_number IS NOT NULL
    AND filing_date IS NOT NULL
+   AND filing_status IS NOT NULL
+   AND filing_date >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 YEAR) 
+   AND borough IS NOT NULL
 
 
    -- Deduplicate

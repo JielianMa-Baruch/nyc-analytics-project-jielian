@@ -73,7 +73,10 @@ cleaned AS (
    WHERE job_filing_number IS NOT NULL
    AND filing_date IS NOT NULL
    AND filing_status IS NOT NULL
-   AND filing_date >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 YEAR) 
+   AND CAST(filing_date AS TIMESTAMP) >=
+    TIMESTAMP(
+        DATE_SUB(CURRENT_DATE(), INTERVAL 7 YEAR)
+    )
    AND borough IS NOT NULL
 
 

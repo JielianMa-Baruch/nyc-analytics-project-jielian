@@ -37,4 +37,4 @@ models:
          +materialized: table
 
        dot_311:
-         +materialized: tabl
+         +materialized: table

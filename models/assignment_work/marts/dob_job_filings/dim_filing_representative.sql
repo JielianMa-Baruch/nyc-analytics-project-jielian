@@ -1,6 +1,7 @@
 -- Filing representative dimension for DOB NOW job filings
 -- Grain: one row per distinct combo of filing representative attributes
 
+
 WITH stg_dob AS (
     SELECT * FROM {{ ref('stg_nyc_dob_job_filings') }}
 ),
@@ -44,7 +45,7 @@ dim_filing_rep AS (
         state,
         zip
 
-    FROM enriched
+    FROM distinct_filing_reps
 
 ),
 

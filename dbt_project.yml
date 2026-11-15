@@ -38,3 +38,21 @@ models:
 
        dot_311:
          +materialized: table
+
+   project_group2_work:
+     staging:
+       +materialized: table
+       +schema: nyc_parking_staging
+
+     marts:
+       +materialized: table
+       +schema: nyc_parking_data_warehouse
+      
+       conformed:
+         +materialized: table
+
+       open_parking:
+         +materialized: table
+
+       311_illegal_parking:
+         +materialized: table

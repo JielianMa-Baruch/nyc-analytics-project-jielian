@@ -15,7 +15,6 @@ cleaned AS (
            issue_date,
            violation,
            county,
-           zip,
            issuing_agency,
            violation_time,
            violation_status
@@ -31,18 +30,6 @@ cleaned AS (
        CAST(issuing_agency AS STRING) AS agency_name,
        CAST(violation AS STRING) AS violation,
        UPPER(TRIM(CAST(violation_status AS STRING))) AS status,
-
-       -- Location - clean zip code, handling several common zip code data problems
-       CASE
-           WHEN UPPER(TRIM(CAST(zip AS STRING))) IN ('N/A', 'NA') THEN NULL
-           WHEN UPPER(TRIM(CAST(zip AS STRING))) = 'ANONYMOUS' THEN 'Anonymous'
-           WHEN LENGTH(CAST(zip AS STRING)) = 5 THEN CAST(zip AS STRING)
-           WHEN LENGTH(CAST(zip AS STRING)) = 9 THEN CAST(zip AS STRING)
-           WHEN LENGTH(CAST(zip AS STRING)) = 10
-               AND REGEXP_CONTAINS(CAST(zip AS STRING), r'^\d{5}-\d{4}')
-           THEN CAST(zip AS STRING)
-           ELSE NULL
-       END AS zip,
 
        -- Location - standardized borough, just in case
        CASE

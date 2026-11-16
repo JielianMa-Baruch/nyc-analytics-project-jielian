@@ -35,12 +35,12 @@ all_locations AS (
     SELECT DISTINCT
         CAST(borough AS STRING) AS borough,
         CAST(zip AS STRING) AS zip_code,
-        CAST(precinct AS STRING) AS precinct
+        CAST(police_precinct AS STRING) AS precinct
 
     FROM stg_311_illegal_parking
 
     WHERE borough IS NOT NULL
-       OR precinct IS NOT NULL
+       OR police_precinct IS NOT NULL
        OR zip IS NOT NULL
 
 ),

@@ -22,7 +22,6 @@ all_agencies AS(
     FROM stg_311_illegal_parking
     WHERE agency_name IS NOT NULL
 
-    UNION DISTINCT
 ),
 
 agency_dimension AS (

@@ -11,18 +11,16 @@ stg_311_illegal_parking AS (
 all_agencies AS(
 
     -- NYC Open Parking and Camera Violations
-    SELECT DISTINCT  TRIM(CAST(agency_name AS STRING)) AS agency
+    SELECT DISTINCT CAST(agency_name AS STRING) AS agency_name
     FROM stg_open_parking
     WHERE agency_name IS NOT NULL
-       AND TRIM(CAST(agency_name AS STRING)) != ''
       
     UNION DISTINCT
 
     -- 311 service request illegal parking complaint type
-    SELECT DISTINCT TRIM(CAST(agency_name AS STRING)) AS agency
+    SELECT DISTINCT CAST(agency_name AS STRING) AS agency_name
     FROM stg_311_illegal_parking
     WHERE agency_name IS NOT NULL
-       AND TRIM(CAST(agency_name AS STRING)) != ''
 
 ),
 

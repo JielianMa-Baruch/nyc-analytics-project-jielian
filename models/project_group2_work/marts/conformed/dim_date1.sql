@@ -30,7 +30,7 @@ all_dates AS (
     FROM stg_311_illegal_parking
     WHERE closed_date IS NOT NULL
 
-    UNION DISTINCT
+
 ),
 
 -- Date dimension 

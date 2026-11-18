@@ -43,9 +43,9 @@ fact_base AS (
             COALESCE(l.zip_code, '')
 
     LEFT JOIN {{ ref('dim_complaint_type1') }} c
-        ON CAST(s.complaint_type AS STRING) = c.problem
+        ON CAST(s.complaint_type AS STRING) = c.complaint_type
         AND COALESCE(CAST(s.descriptor AS STRING), '') =
-            COALESCE(c.problem_detail, '')
+            COALESCE(c.descriptor, '')
         AND CAST(s.status AS STRING) = c.status
 )
 

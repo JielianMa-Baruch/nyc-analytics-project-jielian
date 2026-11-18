@@ -21,7 +21,7 @@ fact_base AS (
         COALESCE(l.location_key, '-1') AS location_key,
 
         -- Complaint type dimension
-        COALESCE(c.complaints_type_key, '-1') AS complaints_key,
+        COALESCE(c.complaint_type_key, '-1') AS complaints_key,
 
         -- Measure
         1 AS request_count

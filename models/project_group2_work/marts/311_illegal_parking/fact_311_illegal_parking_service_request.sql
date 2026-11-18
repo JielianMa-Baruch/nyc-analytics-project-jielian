@@ -41,8 +41,6 @@ fact_base AS (
         ON CAST(s.borough AS STRING) = l.borough
         AND COALESCE(CAST(s.zip AS STRING), '') =
             COALESCE(l.zip_code, '')
-        AND COALESCE(CAST(s.precinct AS STRING), '') =
-            COALESCE(l.precinct, '')
 
     LEFT JOIN {{ ref('dim_complaint_type1') }} c
         ON CAST(s.complaint_type AS STRING) = c.problem

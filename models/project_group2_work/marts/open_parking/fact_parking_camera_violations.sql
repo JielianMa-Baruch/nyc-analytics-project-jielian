@@ -42,10 +42,8 @@ fact_base AS (
 
     LEFT JOIN {{ ref('dim_location1') }} l
         ON CAST(s.borough AS STRING) = l.borough
-        AND COALESCE(CAST(s.zip AS STRING), '') =
-            COALESCE(l.zip_code, '')
-        AND COALESCE(CAST(s.precinct AS STRING), '') =
-            COALESCE(l.precinct, '')
+        AND l.zip_code IS NULL
+        AND CAST(s.precinct AS STRING) = l.precinct
 
     LEFT JOIN {{ ref('dim_registration') }} r
         ON CAST(s.plate AS STRING) = r.plate

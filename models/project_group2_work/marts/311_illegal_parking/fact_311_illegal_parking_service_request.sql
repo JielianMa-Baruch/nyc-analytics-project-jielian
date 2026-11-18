@@ -44,7 +44,7 @@ fact_base AS (
         AND COALESCE(CAST(s.precinct AS STRING), '') =
             COALESCE(l.precinct, '')
 
-    LEFT JOIN {{ ref('dim_complaints_type') }} c
+    LEFT JOIN {{ ref('dim_complaint_type1') }} c
         ON CAST(s.complaint_type AS STRING) = c.problem
         AND COALESCE(CAST(s.descriptor AS STRING), '') =
             COALESCE(c.problem_detail, '')
